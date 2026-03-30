@@ -32,14 +32,16 @@
 		</div>
 		<div v-if="transactionData" class="overflow-y-auto">
 			<div class="grid grid-cols-3 gap-5">
-				<FormControl
+				<Switch
+					size="sm"
 					:label="__('Payment Received')"
-					type="checkbox"
+					:description="__('Mark the payment as received.')"
 					v-model="transactionData.payment_received"
 				/>
-				<FormControl
+				<Switch
+					size="sm"
 					:label="__('Payment For Certificate')"
-					type="checkbox"
+					:description="__('This payment is for a certificate.')"
 					v-model="transactionData.payment_for_certificate"
 				/>
 				<FormControl
@@ -85,7 +87,7 @@
 				/>
 			</div>
 
-			<div class="font-semibold mt-10">
+			<div class="font-semibold mt-10 text-ink-gray-9">
 				{{ __('Payment Details') }}
 			</div>
 			<div class="grid grid-cols-3 gap-5 mt-5">
@@ -109,7 +111,7 @@
 			</div>
 
 			<div v-if="transactionData.coupon">
-				<div class="font-semibold mt-10">
+				<div class="font-semibold mt-10 text-ink-gray-9">
 					{{ __('Coupon Details') }}
 				</div>
 				<div class="grid grid-cols-3 gap-5 mt-5">
@@ -140,7 +142,7 @@
 				</div>
 			</div>
 
-			<div class="font-semibold mt-10">
+			<div class="font-semibold mt-10 text-ink-gray-9">
 				{{ __('Billing Details') }}
 			</div>
 			<div class="grid grid-cols-3 gap-5 mt-5">
@@ -175,7 +177,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { Button, FormControl, toast } from 'frappe-ui'
+import { Button, FormControl, Switch, toast } from 'frappe-ui'
 import { useRouter } from 'vue-router'
 import { computed, ref, watch } from 'vue'
 import { ChevronLeft } from 'lucide-vue-next'

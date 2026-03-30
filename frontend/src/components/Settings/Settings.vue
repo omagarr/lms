@@ -31,7 +31,7 @@
 				<div
 					v-if="activeTab && data.doc"
 					:key="activeTab.label"
-					class="flex flex-1 flex-col p-8 bg-surface-modal overflow-x-auto"
+					class="flex flex-1 flex-col p-8 bg-surface-modal overflow-x-auto overflow-y-auto"
 				>
 					<component
 						v-if="activeTab.template"
@@ -42,8 +42,8 @@
 							...(activeTab.label == 'Branding'
 								? { sections: activeTab.sections }
 								: {}),
-							...(activeTab.label == 'Evaluators' ||
-							activeTab.label == 'Members' ||
+							...(activeTab.label == 'Members' ||
+							activeTab.label == 'Evaluators' ||
 							activeTab.label == 'Transactions'
 								? { 'onUpdate:show': (val) => (show = val), show }
 								: {}),
