@@ -30,8 +30,8 @@ def get_lms_path():
 # app_include_js = "/assets/lms/js/lms.js"
 
 # include js, css files in header of web template
-web_include_css = "lms.bundle.css"
-# web_include_css = "/assets/lms/css/lms.css"
+# HEADLESS MODE: Frontend assets stripped — Frappe serves API only
+web_include_css = []
 web_include_js = []
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -176,41 +176,14 @@ override_whitelisted_methods = {
 # auto_cancel_exempted_doctypes = ["Auto Repeat"]
 
 # Add all simple route rules here
-website_route_rules = [
-	{"from_route": f"/{get_lms_path()}/<path:app_path>", "to_route": "_lms"},
-	{"from_route": f"/{get_lms_path()}", "to_route": "_lms"},
-	{
-		"from_route": "/courses/<course_name>/<certificate_id>",
-		"to_route": "certificate",
-	},
-]
+# HEADLESS MODE: No SPA routes needed
+website_route_rules = []
 
-website_redirects = [
-	{"source": "/update-profile", "target": "/edit-profile"},
-	{"source": "/courses", "target": f"/{get_lms_path()}/courses"},
-	{
-		"source": r"^/courses/.*$",
-		"target": f"/{get_lms_path()}/courses",
-	},
-	{"source": "/batches", "target": f"/{get_lms_path()}/batches"},
-	{
-		"source": r"/batches/(.*)",
-		"target": f"/{get_lms_path()}/batches",
-		"match_with_query_string": True,
-	},
-	{"source": "/job-openings", "target": f"/{get_lms_path()}/job-openings"},
-	{
-		"source": r"/job-openings/(.*)",
-		"target": f"/{get_lms_path()}/job-openings",
-		"match_with_query_string": True,
-	},
-	{"source": "/statistics", "target": f"/{get_lms_path()}/statistics"},
-	{"source": "_lms", "target": f"/{get_lms_path()}"},
-]
+# HEADLESS MODE: No website redirects needed
+website_redirects = []
 
-update_website_context = [
-	"lms.widgets.update_website_context",
-]
+# HEADLESS MODE: No website context injection needed
+update_website_context = []
 
 jinja = {
 	"methods": [
@@ -258,28 +231,19 @@ lms_markdown_macro_renderers = {
 	"PDF": "lms.plugins.pdf_renderer",
 }
 
-page_renderer = [
-	"lms.page_renderers.SCORMRenderer",
-]
+# HEADLESS MODE: No page rendering needed
+page_renderer = []
 
-# set this to "/" to have profiles on the top-level
-profile_url_prefix = "/users/"
-
-signup_form_template = "lms.plugins.show_custom_signup"
+# HEADLESS MODE: No web profile pages or signup forms
+# profile_url_prefix = "/users/"
+# signup_form_template = "lms.plugins.show_custom_signup"
 
 on_login = "lms.lms.user.on_login"
 
 get_site_info = "lms.activation.get_site_info"
 
-add_to_apps_screen = [
-	{
-		"name": "lms",
-		"logo": "/assets/lms/frontend/learning.svg",
-		"title": "Learning",
-		"route": f"/{get_lms_path()}",
-		"has_permission": "lms.lms.api.check_app_permission",
-	}
-]
+# HEADLESS MODE: No Desk app screen tile needed
+# add_to_apps_screen = [...]
 
 sqlite_search = ["lms.sqlite.LearningSearch"]
 auth_hooks = ["lms.auth.authenticate"]
