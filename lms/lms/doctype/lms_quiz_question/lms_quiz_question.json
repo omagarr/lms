@@ -10,7 +10,8 @@
   "marks",
   "section_break_huup",
   "question_detail",
-  "type"
+  "type",
+  "multiple"
  ],
  "fields": [
   {
@@ -53,6 +54,15 @@
    "in_list_view": 1,
    "label": "Type",
    "options": "Choices\nUser Input\nOpen Ended",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fetch_from": "question.multiple",
+   "fieldname": "multiple",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Multiple Correct Answers",
    "read_only": 1
   }
  ],
