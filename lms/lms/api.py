@@ -862,6 +862,7 @@ def get_announcements(batch: str):
 			"reference_name": batch,
 		},
 		fields=[
+			"name",
 			"subject",
 			"content",
 			"recipients",
